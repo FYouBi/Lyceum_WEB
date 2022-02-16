@@ -182,5 +182,56 @@ def form_sample():
         return "Форма отправлена"
 
 
+@app.route('/choice/<planet_name>')
+def choice(planet_name):
+    first = ''
+    second = ''
+    third = ''
+    fourth = ''
+    if planet_name == 'Меркурий':
+        first = 'Это самая'
+        second = 'близкая'
+        third = 'планета'
+        fourth = 'к солнцу'
+    if planet_name == 'Венера':
+        first = 'Это планета.'
+        second = 'не знаю что'
+        third = 'еще'
+        fourth = 'сказать'
+    if planet_name == 'Земля':
+        first = 'Ты'
+        second = 'на'
+        third = 'ней'
+        fourth = 'живешь'
+    return f'''<!doctype html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="utf-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                        <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
+                        <link rel="stylesheet" 
+                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+                        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" 
+                        crossorigin="anonymous">
+                        <title></title>
+                      </head>
+                      <body>
+                        <h1>Мое предложение: {planet_name}</h1>
+                        <div class="alert alert-dark" role="alert">
+                          {first}
+                        </div>
+                        <div class="alert alert-success" role="alert">
+                          {second}
+                        </div>
+                        <div class="alert alert-secondary" role="alert">
+                          {third}
+                        </div>
+                        <div class="alert alert-orange" role="alert">
+                          {fourth}
+                        </div>
+                      </body>
+                    </html>'''
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
