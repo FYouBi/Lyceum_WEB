@@ -1,22 +1,16 @@
-h1 {
-    color:#000000;
-    text-align: center;
-}
-h3 {
-    color:#000000;
-    text-align: center;
-}
-.alert-orange {
-    color:#000000;
-    background-color:#e7e0d1;
-    border-color:#dbd8ba
-}
 form.login_form {
     margin-left: auto;
     margin-right: auto;
     max-width: 450px;
-    background-color: #ffcc00;
+    background-color: #FFFFFF;
     border: 1px solid gray;
     border-radius: 5px;
     padding: 10px;
+}
+h4 {
+    color: #cccccc;
+    padding: 20px;
+}
+p {
+    text-size: 14pt;
 }
