@@ -146,13 +146,13 @@ def form_sample():
                                         <div class="form-check">
                                           <input class="form-check-input" type="radio" name="sex" id="male" value="male" checked>
                                           <label class="form-check-label" for="male">
-                                            Боевой вертолет ми-28
+                                            Мужской
                                           </label>
                                         </div>
                                         <div class="form-check">
                                           <input class="form-check-input" type="radio" name="sex" id="female" value="female">
                                           <label class="form-check-label" for="female">
-                                            Истребитель миг-29
+                                            Женский
                                           </label>
                                         </div>
                                     </div>
