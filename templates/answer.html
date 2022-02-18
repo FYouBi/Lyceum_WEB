@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <meta charset="UTF-8">
+    <h2 align="left">Ваш ответ</h2>
+    {% for i in list %}
+        {% if i != 'csrf_token' %}
+            <h5>{{i}}: {{dict[i]}}</h5>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
