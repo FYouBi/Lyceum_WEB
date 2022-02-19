@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from loginform import LoginForm
+from loginform import LoginForm, Protection
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -44,6 +44,16 @@ def login():
         data = form.data
         return redirect('/answer')
     return render_template('login.html', title='Авторизация', form=form)
+
+
+@app.route('/protection', methods=['GET', 'POST'])
+def protection():
+    global data
+    form = Protection()
+    if form.validate_on_submit():
+        data = form.data
+        return redirect('/answer')
+    return render_template('protection.html', title='Авторизация', form=form)
 
 
 if __name__ == '__main__':
