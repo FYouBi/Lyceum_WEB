@@ -56,5 +56,10 @@ def protection():
     return render_template('protection.html', title='Авторизация', form=form)
 
 
+@app.route('/distribution')
+def distribution():
+    return render_template('distribution.html', title='Каюты', list=['Ридли Скот', 'Энди Уир', 'Марк Уотни', 'Шон Бин'])
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
