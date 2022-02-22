@@ -61,5 +61,16 @@ def distribution():
     return render_template('distribution.html', title='Каюты', list=['Ридли Скот', 'Энди Уир', 'Марк Уотни', 'Шон Бин'])
 
 
+@app.route('/table/<sex>/<age>')
+def table(sex, age):
+    age = int(age)
+    if sex == 'female':
+        color = '#ff9770' if age < 21 else '#ff5719'
+    else:
+        color = '#709dff' if age < 21 else '#145eff'
+    img = url_for('static', filename='img/adult.png') if age >= 21 else url_for('static', filename='img/kid.png')
+    return render_template('table.html', title='', img=img, color=color)
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

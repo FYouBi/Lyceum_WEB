@@ -7,16 +7,26 @@ form.login_form {
     border-radius: 5px;
     padding: 10px;
 }
+
 h4 {
     color: #abbedb;
     padding-left: 20px;
 }
+
 .some {
     margin-left: 70px
 }
+
 #some {
     text-alight: center
 }
+
 p {
     text-size: 14pt;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
 }
