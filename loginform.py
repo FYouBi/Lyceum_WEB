@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, SubmitField, TextAreaField, RadioField, SelectField, PasswordField
+from wtforms import StringField, BooleanField, SubmitField, TextAreaField, \
+    RadioField, SelectField, PasswordField, FileField
 from wtforms.validators import DataRequired
 
 
@@ -23,3 +24,8 @@ class Protection(FlaskForm):
     id_2 = StringField('id капитана', validators=[DataRequired()])
     password_2 = PasswordField('Пароль капитана', validators=[DataRequired()])
     submit = SubmitField('Доступ')
+
+
+class LoadPhoto(FlaskForm):
+    photo = FileField('Приложите фотографию', validators=[DataRequired()])
+    submit = SubmitField('Отправить')

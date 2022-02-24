@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, request, redirect
-from loginform import LoginForm, Protection
+from loginform import LoginForm, Protection, LoadPhoto
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -70,6 +70,16 @@ def table(sex, age):
         color = '#709dff' if age < 21 else '#145eff'
     img = url_for('static', filename='img/adult.png') if age >= 21 else url_for('static', filename='img/kid.png')
     return render_template('table.html', title='', img=img, color=color)
+
+
+@app.route('/load_photo', methods=['GET', 'POST'])
+def load_photo():
+    global data
+    form = LoadPhoto()
+    if form.validate_on_submit():
+        data = form.data
+        return render_template('load_photo.html', title='', form=form, img=url_for('static', filename='img/' + data['photo']))
+    return render_template('load_photo.html', title='', form=form, img=url_for('static', filename=''))
 
 
 if __name__ == '__main__':
