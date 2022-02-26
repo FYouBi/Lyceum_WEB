@@ -79,8 +79,10 @@ def load_photo():
     if form.validate_on_submit():
         data = form.data
         return render_template('load_photo.html', title='', form=form, img=url_for('static', filename='img/' + data['photo']))
-    return render_template('load_photo.html', title='', form=form, img=url_for('static', filename=''))
-
+    if request.methods == "POST":
+        return render_template('load_photo.html', title='', form=form, img=url_for('static', filename=''))
+    elif request.methods == "GET":
+        return render_template('load_photo.html', title='', form=form, img=url_for('static', filename='img/' + form.data['photo']))
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
