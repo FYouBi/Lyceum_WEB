@@ -97,6 +97,7 @@ if __name__ == '__main__':
     db_session.global_init("db/user.db")
     session = db_session.create_session()
 
+
     user = User()
     user.surname = "Scott"
     user.name = "Ridley"
