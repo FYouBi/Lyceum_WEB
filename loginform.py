@@ -29,3 +29,16 @@ class Protection(FlaskForm):
 class LoadPhoto(FlaskForm):
     photo = FileField('Приложите фотографию', validators=[DataRequired()])
     submit = SubmitField('Отправить')
+
+
+class RegisterForm(FlaskForm):
+    login_email = StringField('login/email', validators=[DataRequired()])
+    password = StringField('password', validators=[DataRequired()])
+    repeat_password = StringField('repeat password', validators=[DataRequired()])
+    surname = StringField('surname', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
+    age = StringField('age', validators=[DataRequired()])
+    position = StringField('position', validators=[DataRequired()])
+    speciality = StringField('speciality', validators=[DataRequired()])
+    address = StringField('address', validators=[DataRequired()])
+    submit = SubmitField('Войти')
