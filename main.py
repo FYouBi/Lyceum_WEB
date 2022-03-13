@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect
 import datetime
 from data.jobs import Jobs
-from loginform import LoginForm, Protection, LoadPhoto, RegisterForm
+from forms import LoginForm, Protection, LoadPhoto, RegisterForm
 from data import db_session
 from data.users import User
 
@@ -22,6 +22,14 @@ def register():
         session.commit()
         return 'ok'
     return render_template('register.html', title='Авторизация', form=form)
+
+
+@app.route('/authorization', methods=['GET', 'POST'])
+def authorization():
+    form = LoginForm()
+    if form.validate_on_submit():
+        return render_template('authorization.html', form=form)
+    return render_template('authorization.html', title='Authorization', form=form, list=[form.email, form.password])
 
 
 if __name__ == '__main__':
