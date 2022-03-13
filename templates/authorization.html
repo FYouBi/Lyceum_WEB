@@ -15,6 +15,11 @@
       </p>
       {% endfor %}
     {% endfor %}
+    {% if message %}
+        <div class="alert alert-danger" role="alert">
+              {{ message }}
+          </div>
+    {% endif %}
     <label>{{ form.remember_me(type="radio") }} remember me</label>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
 </form>

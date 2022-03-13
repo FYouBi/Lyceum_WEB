@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 
 
-@app.route('/register',  methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -28,13 +28,21 @@ def register():
 def authorization():
     form = LoginForm()
     if form.validate_on_submit():
-        return render_template('authorization.html', form=form)
-    return render_template('authorization.html', title='Authorization', form=form, list=[form.email, form.password])
+        db_sess = db_session.create_session()
+        email, password = form.data['email'], form.data['password']
+        for user in db_sess.query(User).all():
+            if user.email == email:
+                if user.hashed_password == password:
+                    return render_template('base.html')
+                return render_template('authorization.html', title='Authorization', message='Неверный пароль',
+                                       form=form, list=[form.email, form.password])
+        return render_template('authorization.html', title='Authorization', message='Неверный логин',
+                               form=form, list=[form.email, form.password])
+    return render_template('authorization.html', title='Authorization', message='',
+                           form=form, list=[form.email, form.password])
 
 
 if __name__ == '__main__':
     db_session.global_init('db/users.db')
     session = db_session.create_session()
     app.run(port=8080, host='127.0.0.1')
-
-
