@@ -48,6 +48,26 @@ def get_news():
     )
 
 
+@blueprint.route('/api/new_job', methods=['POST'])
+def create_job():
+    if not request.json:
+        return jsonify({'error': 'Empty request'})
+    elif not all(key in request.json for key in
+                 ['job', 'work_size', 'collaborators', 'is_finished', 'team_leader']):
+        return jsonify({'error': 'Bad request'})
+    db_sess = db_session.create_session()
+    job = Jobs(
+        job=request.json['job'],
+        work_size=request.json['work_size'],
+        collaborators=request.json['collaborators'],
+        is_finished=request.json['is_finished'],
+        team_leader=request.json['team_leader']
+    )
+    db_sess.add(job)
+    db_sess.commit()
+    return jsonify({'success': 'OK'})
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()

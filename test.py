@@ -1,9 +1,10 @@
-from requests import get
+from requests import get, post
 
-print(get('http://localhost:5000/api/jobs').json())
-print(get('http://localhost:5000/api/jobs/1').json())
-print(get('http://localhost:5000/api/jobs/2').json())
-print(get('http://localhost:5000/api/jobs/a').json())
-
-
-
+print(post('http://localhost:5000/api/new_job', json={'job': 'gruzchik',
+                                                      'work_size': '20',
+                                                      'collaborators': 'Shamil Ivan',
+                                                      'is_finished': False,
+                                                      'team_leader': 'ya'}).json())
+print(post('http://localhost:5000/api/new_job').json())
+print(post('http://localhost:5000/api/new_job',  json={'job': 'gruzchik',
+                                                      'work_size': '20'}).json())
