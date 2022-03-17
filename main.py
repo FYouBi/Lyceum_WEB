@@ -17,6 +17,24 @@ blueprint = flask.Blueprint(
 )
 
 
+@blueprint.route('/api/jobs/<job_id>')
+def job(job_id):
+    try:
+        job_id = int(job_id)
+    except:
+        return jsonify({'error': 'Incorrect request'})
+    db_sess = db_session.create_session()
+    jobs = db_sess.query(Jobs).get(job_id)
+    if jobs:
+        return jsonify(
+            {
+                'jobs':
+                    [jobs.to_dict(only=('id', 'job', 'work_size', 'collaborators', 'start_date', 'end_date', 'is_finished', 'team_leader'))]
+            }
+        )
+    return jsonify({'error': f'Not found job with id {job_id}'})
+
+
 @blueprint.route('/api/jobs')
 def get_news():
     db_sess = db_session.create_session()
@@ -67,4 +85,4 @@ if __name__ == '__main__':
     db_session.global_init('db/users.db')
     session = db_session.create_session()
     app.register_blueprint(blueprint)
-    app.run(port=8080, host='127.0.0.1')
+    app.run(port=5000, host='127.0.0.1')
