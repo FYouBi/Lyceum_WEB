@@ -53,8 +53,10 @@ def create_job():
     if not request.json:
         return jsonify({'error': 'Empty request'})
     elif not all(key in request.json for key in
-                 ['job', 'work_size', 'collaborators', 'is_finished', 'team_leader']):
+                 ['id', 'job', 'work_size', 'collaborators', 'is_finished', 'team_leader']):
         return jsonify({'error': 'Bad request'})
+    elif session.query(Jobs).filter(Jobs.id == request.json['id']):
+        return jsonify({'error': 'Id already exists'})
     db_sess = db_session.create_session()
     job = Jobs(
         job=request.json['job'],
